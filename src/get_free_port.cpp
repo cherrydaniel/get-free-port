@@ -1,8 +1,3 @@
-#include <iostream>
-#include <cstdlib>
-#include <cstdio>
-#include <functional>
-#include <memory>
 #include <napi.h>
 #include <uv.h>
 #pragma comment(lib, "Ws2_32.lib")
