@@ -1,6 +1,8 @@
 #include <napi.h>
 #include <uv.h>
+#ifdef _WIN32
 #pragma comment(lib, "Ws2_32.lib")
+#endif
 
 using namespace std;
 
@@ -19,7 +21,7 @@ Napi::Value getFreePort(const Napi::CallbackInfo& info)
     uv_tcp_t* server = new uv_tcp_t();
     CHECK_UV_RES(uv_tcp_init(uv_default_loop(), server));
     struct sockaddr_in addr;
-    CHECK_UV_RES(uv_ip4_addr("127.0.0.1", 0, &addr));
+    CHECK_UV_RES(uv_ip4_addr("0.0.0.0", 0, &addr));
     CHECK_UV_RES(uv_tcp_bind(server, reinterpret_cast<const struct sockaddr*>(&addr), 0));
     struct sockaddr_storage addr_storage;
     int addr_len = sizeof(addr_storage);
