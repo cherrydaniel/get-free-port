@@ -10,6 +10,7 @@ using namespace std;
 { \
     if (uv_res) \
     { \
+        delete server; \
         Napi::Error::New(env, uv_strerror(uv_res)).ThrowAsJavaScriptException(); \
         return env.Undefined(); \
     } \
